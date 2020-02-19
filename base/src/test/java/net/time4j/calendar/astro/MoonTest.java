@@ -13,6 +13,7 @@ import org.junit.runners.JUnit4;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -233,7 +234,8 @@ public class MoonTest {
             is(65.70561602012208)); // usno => 65.7
         assertThat(
             position.getElevation(),
-            is(1.9708028936549722)); // usno => 2.0
+            anyOf(  is(1.9708028936549722),
+                    is(1.970802893654973))); // usno => 2.0
 
         m = PlainTimestamp.of(2018, 1, 1, 21, 0).in(tz);
         position = MoonPosition.at(m, ny);
